@@ -16,6 +16,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar2" />
 
+    <view
+        android:id="@+id/divider_chat2"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:background="#dfdfdf"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar2" />
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar2"
         style="@style/ToolBarStyle"
@@ -63,13 +72,13 @@
         android:hint="@string/write_your_message"
         android:inputType="text"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/img_send"
+        app:layout_constraintEnd_toStartOf="@+id/button_chat_send"
         app:layout_constraintStart_toEndOf="@+id/img_attachment"
         app:layout_constraintTop_toTopOf="@+id/img_attachment"
         tools:ignore="Autofill" />
 
     <ImageView
-        android:id="@+id/img_send"
+        android:id="@+id/button_chat_send"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
@@ -83,11 +92,13 @@
         android:id="@+id/recycler_chat"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:clipToPadding="false"
         android:padding="4dp"
+        android:paddingBottom="4dp"
         app:layout_constraintBottom_toTopOf="@+id/et_message"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar2" />
+        app:layout_constraintTop_toBottomOf="@+id/divider_chat2" />
 
     <ImageView
         android:id="@+id/no_messages_img"
@@ -101,5 +112,3 @@
         tools:visibility="gone" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-
