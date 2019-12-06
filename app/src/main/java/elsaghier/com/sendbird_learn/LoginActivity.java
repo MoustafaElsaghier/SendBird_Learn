@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.sendbird.android.SendBird;
 import com.sendbird.android.SendBirdException;
@@ -23,7 +24,7 @@ public class LoginActivity extends AppCompatActivity {
     TextInputEditText mUserIdEditText;
     @BindView(R.id.edit_text_login_user_nickname)
     TextInputEditText mUserNicknameEditText;
-    @BindView(R.id.text_input_login_user_nickname)
+    @BindView(R.id.button_login)
     Button mConnectButton;
     private SharedPreferences mPrefs;
 
@@ -50,8 +51,9 @@ public class LoginActivity extends AppCompatActivity {
 
                 String userNickname = mUserNicknameEditText.getText().toString();
                 SharedPreferences.Editor mEditor = mPrefs.edit();
-                mEditor.putString("userId", userId).commit();
-                mEditor.putString("userNickName", userNickname).commit();
+                mEditor.putString("userId", userId);
+                mEditor.putString("userNickName", userNickname);
+                mEditor.apply();
                 connectToSendBird(userId, userNickname);
             }
         });
@@ -70,7 +72,6 @@ public class LoginActivity extends AppCompatActivity {
                             Toast.LENGTH_SHORT)
                             .show();
 
-                    // Show login failure snackbar
                     mConnectButton.setEnabled(true);
                     return;
                 }
@@ -80,6 +81,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 intent.putExtra("userID", userId);
+                intent.putExtra("channelType", Constants.groupChannelType);
                 startActivity(intent);
                 finish();
             }
@@ -97,14 +99,10 @@ public class LoginActivity extends AppCompatActivity {
             public void onUpdated(SendBirdException e) {
                 if (e != null) {
                     // Error!
-                    Toast.makeText(
-                            LoginActivity.this, "" + e.getCode() + ":" + e.getMessage(),
+                    Toast.makeText(LoginActivity.this, "" + e.getCode() + ":" + e.getMessage(),
                             Toast.LENGTH_SHORT)
                             .show();
-
-                    return;
                 }
-
             }
         });
     }
