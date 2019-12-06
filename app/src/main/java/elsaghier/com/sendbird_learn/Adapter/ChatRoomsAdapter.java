@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.sendbird.android.GroupChannel;
 
 import java.util.List;
 
@@ -23,9 +24,9 @@ public class ChatRoomsAdapter extends
         RecyclerView.Adapter<ChatRoomsAdapter.ViewHolder> {
 
     private Context context;
-    private List<ChatRoomModel> list;
+    private List<GroupChannel> list;
 
-    public ChatRoomsAdapter(Context context, List<ChatRoomModel> list) {
+    public ChatRoomsAdapter(Context context, List<GroupChannel> list) {
         this.context = context;
         this.list = list;
     }
@@ -44,12 +45,12 @@ public class ChatRoomsAdapter extends
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        ChatRoomModel item = list.get(position);
+        GroupChannel item = list.get(position);
 
-        Glide.with(context).load(item.getImageUrl()).into(holder.imageView);
+        Glide.with(context).load(R.mipmap.ic_launcher_round).into(holder.imageView);
 
-        holder.chatRoomName.setText(item.getChatRoomName());
-        holder.lastMessage.setText(item.getLastMessage());
+        holder.chatRoomName.setText(item.getName());
+        holder.lastMessage.setText(item.getLastMessage().getData());
         //Todo: Setup viewholder for item 
         holder.bind(item);
     }
@@ -73,14 +74,14 @@ public class ChatRoomsAdapter extends
             lastMessage = itemView.findViewById(R.id.last_message);
         }
 
-        void bind(final ChatRoomModel model) {
+        void bind(final GroupChannel model) {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(context, ChatActivity.class);
-                    intent.putExtra("room_name", model.getChatRoomName());
-                    intent.putExtra("room_id", model.getRoom_id());
-                    intent.putExtra("room_image", model.getImageUrl());
+                    intent.putExtra("room_name", model.getName());
+//                    intent.putExtra("room_id", model.getChannel());
+//                    intent.putExtra("room_image", model.getImageUrl());
                     context.startActivity(intent);
                 }
             });

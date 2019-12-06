@@ -28,7 +28,7 @@ public class LoginActivity extends AppCompatActivity {
     Button mConnectButton;
     private SharedPreferences mPrefs;
 
-    final static String APP_ID = "9DA1B1F4-0BE6-4DA8-82C5-2E81DAB56F23"; // Sample App
+    final static String APP_ID = "166B9743-F0FC-4C36-BC6E-ABA1D9811FB1"; // Sample App
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
