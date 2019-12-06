@@ -10,15 +10,12 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 import com.sendbird.android.SendBird;
 import com.sendbird.android.SendBirdException;
 import com.sendbird.android.User;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
-import static android.provider.UserDictionary.Words.APP_ID;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -29,6 +26,8 @@ public class LoginActivity extends AppCompatActivity {
     @BindView(R.id.text_input_login_user_nickname)
     Button mConnectButton;
     private SharedPreferences mPrefs;
+
+    final static String APP_ID = "9DA1B1F4-0BE6-4DA8-82C5-2E81DAB56F23"; // Sample App
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
